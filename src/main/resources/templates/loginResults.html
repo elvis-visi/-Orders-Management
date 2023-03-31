@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>My First Webpage</title>
+    
+    <link href="/css/bootstrap.min.css" rel="stylesheet"> 
+    
+  </head>
+
+
+
+  <body>
+	<!-- *{username}  ==   loginModel.username  -->
+	<div class="container" th:object="${loginModel}">
+		<p>Username: <span th:text="*{username}"> </span></p>
+		<p>Password: <span th:text="*{password}"> </p>
+	</div>
+	  
+  </body>
+</html>
