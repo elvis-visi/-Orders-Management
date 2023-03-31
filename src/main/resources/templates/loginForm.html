@@ -13,6 +13,7 @@
 with a server-side model object called loginModel, 
 which is used to store and handle the user input.  -->
   <body>
+<div class="container my-5">  <!--my  spacing/margin -->
 	 <form action="#" method="post" th:action="@{processLogin}" th:object="${loginModel}" >
   <div class="mb-3">
     <label for="username" class="form-label">Username</label>
@@ -26,6 +27,6 @@ which is used to store and handle the user input.  -->
   
   <button type="submit" class="btn btn-primary">Login</button>
 </form>
-	  
+ </div> 
   </body>
 </html>
