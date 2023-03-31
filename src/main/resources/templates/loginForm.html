@@ -3,12 +3,29 @@
   <head>
     <meta charset="UTF-8">
     <title>My First Webpage</title>
+    
+    <link href="/css/bootstrap.min.css" rel="stylesheet"> 
+    
   </head>
 
+
+<!-- POST request to the processLogin endpoint when submitted. The form will be associated 
+with a server-side model object called loginModel, 
+which is used to store and handle the user input.  -->
   <body>
-	  <p>
-		  Log in form
-	  </p>
+	 <form action="#" method="post" th:action="@{processLogin}" th:object="${loginModel}" >
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input th:field="*{username}" type="text" class="form-control" id="username" aria-describedby="usernamehelp">
+    <div id="usernamehelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input th:field="*{password}" type="text" class="form-control" id="password">
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
 	  
   </body>
 </html>
