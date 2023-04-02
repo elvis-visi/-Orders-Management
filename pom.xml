@@ -9,15 +9,23 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.elvis</groupId>
-	<artifactId>topic2-2</artifactId>
+	<artifactId>topic2-3</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>topic2-2</name>
+	<name>topic2-3</name>
 	<description>Create some pages to demonstrate a controller and views</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		
+		
+		<!-- https://mvnrepository.com/artifact/nz.net.ultraq.thymeleaf/thymeleaf-layout-dialect -->
+	<dependency>
+	    <groupId>nz.net.ultraq.thymeleaf</groupId>
+	    <artifactId>thymeleaf-layout-dialect</artifactId>
+	    <version>3.0.0</version>
+	</dependency>
+				
 		<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
 			<dependency>
 	    <groupId>javax.validation</groupId>
