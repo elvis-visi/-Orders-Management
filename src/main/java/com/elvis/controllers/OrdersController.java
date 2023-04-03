@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 
 import com.elvis.models.OrderModel;
-import com.elvis.services.OrdersBusinessService;
+import com.elvis.services.OrdersBusinessServiceInterface;
 
 @Controller
 @RequestMapping("/orders")
 public class OrdersController {
 	
 	//dependency injection. 
-	OrdersBusinessService service;
+	OrdersBusinessServiceInterface service;
 	
 	
 	@Autowired
-	public OrdersController(OrdersBusinessService service) {
+	public OrdersController(OrdersBusinessServiceInterface service) {
 		super();
 		this.service = service;
 	}

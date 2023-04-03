@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.elvis.models.OrderModel;
 
-@Service
+
 public class OrdersBusinessService implements OrdersBusinessServiceInterface {
 
 	@Override
