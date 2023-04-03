@@ -17,8 +17,16 @@ import com.elvis.services.OrdersBusinessService;
 public class OrdersController {
 	
 	//dependency injection. 
-	@Autowired
 	OrdersBusinessService service;
+	
+	
+	@Autowired
+	public OrdersController(OrdersBusinessService service) {
+		super();
+		this.service = service;
+	}
+
+
 
 	@GetMapping("/")
 	public String showAllOrders(Model model) {
