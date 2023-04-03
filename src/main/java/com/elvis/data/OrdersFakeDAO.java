@@ -2,6 +2,7 @@ package com.elvis.data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
@@ -38,17 +39,11 @@ public class OrdersFakeDAO implements OrdersDataAccessInterface {
 	@Override
 	public List<OrderModel> searchOrders(String searchTerm) {
 		
-		List<OrderModel> foundItems = new ArrayList<OrderModel>(); ;
-		
-		//given a search term. create a list of items whose descriptions match
-		
-		for(int i = 0 ; i <orders.size(); i++)
-		{
-			if(orders.get(i).getProductName().toLowerCase().contains(searchTerm.toLowerCase()))
-			{
-				foundItems.add(orders.get(i));
-			}
-		}
+		List<OrderModel> foundItems = orders
+				.stream()
+				.filter(order -> order.getProductName().toLowerCase()
+						.contains(searchTerm.toLowerCase()))
+				.collect(Collectors.toList());		
 		
 		return foundItems;
 	}
