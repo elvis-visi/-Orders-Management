@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.ui.Model;
@@ -33,6 +34,17 @@ public class OrdersRestController {
 	public List<OrderModel> showAllOrders() {
 		
 		List<OrderModel> orders = service.getOrders();
+		
+		
+	
+		return orders;
+		
+	}
+	
+	@GetMapping("/search/{searchTerm}")
+	public List<OrderModel> searchOrders(@PathVariable(name="searchTerm") String searchTerm) {
+		
+		List<OrderModel> orders = service.searchOrders(searchTerm);
 		
 		
 	

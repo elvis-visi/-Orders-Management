@@ -25,7 +25,7 @@ public class OrdersFakeDAO implements OrdersDataAccessInterface {
 
 	@Override
 	public OrderModel getById(long id) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -37,8 +37,20 @@ public class OrdersFakeDAO implements OrdersDataAccessInterface {
 
 	@Override
 	public List<OrderModel> searchOrders(String searchTerm) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<OrderModel> foundItems = new ArrayList<OrderModel>(); ;
+		
+		//given a search term. create a list of items whose descriptions match
+		
+		for(int i = 0 ; i <orders.size(); i++)
+		{
+			if(orders.get(i).getProductName().toLowerCase().contains(searchTerm.toLowerCase()))
+			{
+				foundItems.add(orders.get(i));
+			}
+		}
+		
+		return foundItems;
 	}
 
 	@Override
