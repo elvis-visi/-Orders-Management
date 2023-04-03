@@ -3,22 +3,23 @@ package com.elvis.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.elvis.models.OrderModel;
 
 
 public class OrdersBusinessService implements OrdersBusinessServiceInterface {
 
+	List<OrderModel> orders ;
+	
 	@Override
 	public void test() {
 		System.out.println("OrdersBusinessService is working");
+		orders = new ArrayList<OrderModel>();
 	}
 
 	@Override
 	public List<OrderModel> getOrders() {
 	
-		List<OrderModel> orders = new ArrayList<OrderModel>();
+		
 		
 		orders.add(new OrderModel(0L, "000","Sky diving exp", 1500.0f,1));
 		orders.add(new OrderModel(1L, "001","car", 1500.0f,1));
@@ -29,6 +30,18 @@ public class OrdersBusinessService implements OrdersBusinessServiceInterface {
 		
 		
 		return orders;
+	}
+
+	@Override
+	public void init() {
+		System.out.println("Init method of OrdersBusinessService");
+		
+	}
+
+	@Override
+	public void destroy() {
+		System.out.println("Destroy method of OrdersBusinessService");
+		
 	}
 
 }

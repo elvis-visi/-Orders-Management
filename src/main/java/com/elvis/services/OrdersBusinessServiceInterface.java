@@ -10,6 +10,10 @@ public interface OrdersBusinessServiceInterface {
 	
 	public List<OrderModel> getOrders();
 	
+	public void init();
+	
+	public void destroy();
+	
 	//future methods
 	
 	// searchOrders(String searchItem)

@@ -31,5 +31,17 @@ public class OrdersBusinessService2 implements OrdersBusinessServiceInterface {
 		
 		return orders;
 	}
+	
+	@Override
+	public void init() {
+		System.out.println("Init method of OrdersBusinessService2");
+		
+	}
+
+	@Override
+	public void destroy() {
+		System.out.println("Destroy method of OrdersBusinessService2");
+		
+	}
 
 }
