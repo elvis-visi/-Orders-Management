@@ -4,16 +4,16 @@ import java.util.List;
 
 import com.elvis.models.OrderModel;
 
-public interface OrdersDataAccessInterface {
+public interface OrdersDataAccessInterface <T> {
 	
-	public OrderModel getById(long id);
-	public List<OrderModel> getOrders();
-	public List<OrderModel> searchOrders(String searchTerm);
+	public T getById(long id);
+	public List<T> getOrders();
+	public List<T> searchOrders(String searchTerm);
 	
-	public long addOne(OrderModel newOrder);
+	public long addOne(T newOrder);
 	
 	public boolean deleteOne(long id);
 	
-	public OrderModel updateOne(long idToUpdate,OrderModel updateOrder);
+	public T updateOne(long idToUpdate,T updateOrder);
 
 }

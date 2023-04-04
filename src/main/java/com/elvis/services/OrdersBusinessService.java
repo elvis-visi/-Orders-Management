@@ -12,7 +12,7 @@ import com.elvis.models.OrderModel;
 public class OrdersBusinessService implements OrdersBusinessServiceInterface {
 
 	@Autowired
-	 OrdersDataAccessInterface ordersDAO;
+	 OrdersDataAccessInterface<OrderModel> ordersDAO;
 	
 	
 	@Override

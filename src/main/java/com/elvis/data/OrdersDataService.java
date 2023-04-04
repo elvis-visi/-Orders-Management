@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Repository
-public class OrdersDataService implements OrdersDataAccessInterface {
+public class OrdersDataService implements OrdersDataAccessInterface<OrderModel> {
 
 	//connection to the DB, application.properties file to get the detail on the 
 	//mysql connection

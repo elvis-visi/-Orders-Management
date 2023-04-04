@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.elvis.models.OrderModel;
 
 @Repository
-public class OrdersFakeDAO implements OrdersDataAccessInterface {
+public class OrdersFakeDAO implements OrdersDataAccessInterface<OrderModel> {
 
 	List<OrderModel> orders = new ArrayList<OrderModel>(); ;
 	
