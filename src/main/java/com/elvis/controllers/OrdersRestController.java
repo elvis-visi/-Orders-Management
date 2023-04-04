@@ -62,8 +62,12 @@ public class OrdersRestController {
 	}
 	
 	
+	@GetMapping("/{id}")
+	public OrderModel getByid(@PathVariable(name="id") long id)
 	
-	
+	{
+		return service.getById(id);
+	}
 	
 	
 	

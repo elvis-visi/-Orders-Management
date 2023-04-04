@@ -27,6 +27,16 @@ public class OrdersFakeDAO implements OrdersDataAccessInterface {
 	@Override
 	public OrderModel getById(long id) {
 		
+		//if list contains an order with the id above return it
+		
+		for(OrderModel order : orders)
+		{
+			if(order.getId() == id)
+			{
+				return order;
+			}
+		}
+		
 		return null;
 	}
 

@@ -43,8 +43,8 @@ public class OrdersBusinessService implements OrdersBusinessServiceInterface {
 
 	@Override
 	public OrderModel getById(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return ordersDAO.getById(id);
 	}
 
 	@Override
