@@ -81,20 +81,36 @@ public class OrdersDataServiceForRepository implements OrdersDataAccessInterface
 
 	@Override
 	public long addOne(OrderModel newOrder) {
-		// TODO Auto-generated method stub
-		return 0;
+		//we can save OrderEntity to the DB
+		OrderEntity entity = modelMapper.map(newOrder,OrderEntity.class);
+		OrderEntity result = ordersRepository.save(entity);
+		
+		if(result == null)
+		{
+			return 0;
+		}else {
+			return result.getId();
+		}
+		
 	}
 
 	@Override
 	public boolean deleteOne(long id) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		ordersRepository.deleteById(id);
+		return true;
 	}
 
 	@Override
 	public OrderModel updateOne(long idToUpdate, OrderModel updateOrder) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		OrderEntity entity = modelMapper.map(updateOrder,OrderEntity.class);
+		OrderEntity result = ordersRepository.save(entity);
+		
+		OrderModel order = modelMapper.map(result,OrderModel.class);
+		
+	
+		return order;
 	}
 
 	
