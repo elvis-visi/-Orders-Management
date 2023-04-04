@@ -2,14 +2,42 @@ package com.elvis.data;
 
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import com.elvis.models.OrderModel;
+import com.elvis.models.OrderEntity;
 
 public class OrdersDataServiceForRepository implements OrdersDataAccessInterface<OrderModel> {
 
+	//need a data source
+	@Autowired
+	OrdersRepositoryInterface ordersRepository;
+	
+	private JdbcTemplate jdbcTemplate;
+	
+	public OrdersDataServiceForRepository(DataSource dataSource)
+	{
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+	
+	
 	@Override
 	public OrderModel getById(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		OrderEntity entity = ordersRepository.findById(id).orElse(null);
+		
+		OrderModel model = new OrderModel(
+				entity.getId(),
+				entity.getOrderNo(),
+				entity.getProductName(),
+				entity.getPrice(),
+				entity.getQuantity()
+				);
+		
+		return model;
 	}
 
 	@Override
