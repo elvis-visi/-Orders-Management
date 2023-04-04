@@ -10,6 +10,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.elvis.models.OrderModel;
 import com.elvis.models.OrderEntity;
 
+import org.modelmapper.ModelMapper;
+
 public class OrdersDataServiceForRepository implements OrdersDataAccessInterface<OrderModel> {
 
 	//need a data source
@@ -23,19 +25,23 @@ public class OrdersDataServiceForRepository implements OrdersDataAccessInterface
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
+	ModelMapper modelMapper =  new ModelMapper();
 	
 	@Override
 	public OrderModel getById(long id) {
 		
 		OrderEntity entity = ordersRepository.findById(id).orElse(null);
 		
-		OrderModel model = new OrderModel(
+		/*OrderModel model = new OrderModel(
 				entity.getId(),
 				entity.getOrderNo(),
 				entity.getProductName(),
 				entity.getPrice(),
 				entity.getQuantity()
 				);
+		*/
+		//mapping all different fields from OrderEntity to OrderModel
+		OrderModel model = modelMapper.map(entity,OrderModel.class);
 		
 		return model;
 	}
