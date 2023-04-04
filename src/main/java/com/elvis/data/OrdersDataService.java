@@ -112,7 +112,19 @@ public class OrdersDataService implements OrdersDataAccessInterface {
 
 	@Override
 	public OrderModel updateOne(long idToUpdate, OrderModel updateOrder) {
-		// TODO Auto-generated method stub
+		
+	int result = 	jdbcTemplate.update("UPDATE ORDERS SET ORDER_NUMBER = ?, PRODUCT_NAME = ?, PRICE = ?, QTY = ? WHERE ID = ?",
+				updateOrder.getOrderNo(),
+				updateOrder.getProductName(),
+				updateOrder.getPrice(),
+				updateOrder.getQuantity(),
+				idToUpdate);
+		
+	if(result > 0)
+	{
+		return updateOrder;
+	}else
+	
 		return null;
 	}
 
