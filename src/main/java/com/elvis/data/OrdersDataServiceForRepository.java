@@ -1,6 +1,7 @@
 package com.elvis.data;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
@@ -48,9 +49,20 @@ public class OrdersDataServiceForRepository implements OrdersDataAccessInterface
 
 	@Override
 	public List<OrderModel> getOrders() {
-		// TODO Auto-generated method stub
-		return null;
+	
+		Iterable<OrderEntity>  ordersEntity = ordersRepository.findAll();
+		
+		List<OrderModel> models = new ArrayList<OrderModel>();
+		
+		for(OrderEntity item: ordersEntity) {
+			// add item to the list of ordermodel
+			models.add(modelMapper.map(item, OrderModel.class));
+		}
+		
+		return models;
 	}
+
+	
 
 	@Override
 	public List<OrderModel> searchOrders(String searchTerm) {
