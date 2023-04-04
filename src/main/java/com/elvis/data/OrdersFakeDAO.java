@@ -73,7 +73,16 @@ public class OrdersFakeDAO implements OrdersDataAccessInterface {
 
 	@Override
 	public boolean deleteOne(long id) {
-		// TODO Auto-generated method stub
+		
+		for(OrderModel order : orders)
+		{
+			if(order.getId() == id)
+			{
+				orders.remove(order);
+				return true;
+			}
+		}
+		
 		return false;
 	}
 

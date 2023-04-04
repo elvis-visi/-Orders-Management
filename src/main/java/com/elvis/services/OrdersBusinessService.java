@@ -61,8 +61,8 @@ public class OrdersBusinessService implements OrdersBusinessServiceInterface {
 
 	@Override
 	public boolean deleteOne(long id) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return ordersDAO.deleteOne(id);
 	}
 
 	@Override

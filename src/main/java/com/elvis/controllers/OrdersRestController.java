@@ -70,7 +70,12 @@ public class OrdersRestController {
 	}
 	
 	
+	@GetMapping("/delete/{id}")
+	public boolean deleteOne(@PathVariable(name="id") long id)
 	
+	{
+		return service.deleteOne(id);
+	}
 	
 	
 	
