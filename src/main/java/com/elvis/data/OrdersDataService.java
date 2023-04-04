@@ -12,6 +12,11 @@ import  com.elvis.models.OrdersMapper;
 
 import com.elvis.models.OrderModel;
 
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+
+import java.util.HashMap;
+import java.util.Map;
+
 @Repository
 public class OrdersDataService implements OrdersDataAccessInterface {
 
@@ -46,8 +51,41 @@ public class OrdersDataService implements OrdersDataAccessInterface {
 
 	@Override
 	public long addOne(OrderModel newOrder) {
-		// TODO Auto-generated method stub
-		return 0;
+		// newOrder is an object that is supposed to be inserted into the database
+		
+		//should return a long value as the id number of the new item in the db.
+		
+		//update -> sql statement and an object
+		//Question marks placeholders to avoid SQL injection attacks
+		
+		/*long result = jdbcTemplate.update("INSERT INTO ORDERS (ORDER_NUMBER,PRODUCT_NAME,PRICE,QTY) VALUES (?,?,?,?)", 
+				newOrder.getOrderNo(),
+				newOrder.getProductName(),
+				newOrder.getPrice(),
+				newOrder.getQuantity()
+				);
+		
+		
+		return result;   */
+		
+		SimpleJdbcInsert simpleInsert = new SimpleJdbcInsert(jdbcTemplate);
+		
+		//generateKeyColumns because we are using AI
+		simpleInsert.withTableName("ORDERS").usingGeneratedKeyColumns("ID");
+		
+		
+		// columns name - corresponding column's value
+		 Map<String, Object> parameters = new HashMap<String, Object>();
+		
+		 parameters.put("ORDER_NUMBER", newOrder.getOrderNo());
+		 parameters.put("PRODUCT_NAME", newOrder.getProductName());
+		 parameters.put("PRICE", newOrder.getPrice());
+		 parameters.put("QTY", newOrder.getQuantity());
+		 
+		 //return the generated key
+		 Number result =  simpleInsert.executeAndReturnKey(parameters);
+		 
+		 return result.longValue();
 	}
 
 	@Override
