@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.context.annotation.SessionScope;
 
+import com.elvis.data.OrdersDataAccessInterface;
+import com.elvis.data.OrdersDataService;
 import com.elvis.services.OrdersBusinessService;
 import com.elvis.services.OrdersBusinessServiceInterface;
 
@@ -16,6 +18,12 @@ public class SpringConfig {
 	@RequestScope
 	public OrdersBusinessServiceInterface getOrdersBusiness() {
 		return new OrdersBusinessService();
+	}
+	
+	@Bean(name="ordersDAO")
+	@RequestScope
+	public OrdersDataAccessInterface getDataService() {
+		return new OrdersDataService();
 	}
 	
 }

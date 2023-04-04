@@ -2,10 +2,28 @@ package com.elvis.data;
 
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import  com.elvis.models.OrdersMapper;
+
 import com.elvis.models.OrderModel;
 
+@Repository
 public class OrdersDataService implements OrdersDataAccessInterface {
 
+	//connection to the DB, application.properties file to get the detail on the 
+	//mysql connection
+	@Autowired
+	DataSource dataSource;
+	
+	//used to execute sql statements
+	@Autowired
+	JdbcTemplate jdbcTemplate;
+	
 	@Override
 	public OrderModel getById(long id) {
 		// TODO Auto-generated method stub
@@ -14,8 +32,10 @@ public class OrdersDataService implements OrdersDataAccessInterface {
 
 	@Override
 	public List<OrderModel> getOrders() {
-		// TODO Auto-generated method stub
-		return null;
+		//sql statement and some kind of object mapper
+		List<OrderModel> results = jdbcTemplate.query("SELECT * FROM ORDERS", new OrdersMapper());
+		
+		return results;
 	}
 
 	@Override
