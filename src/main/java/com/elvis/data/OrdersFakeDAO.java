@@ -88,7 +88,15 @@ public class OrdersFakeDAO implements OrdersDataAccessInterface {
 
 	@Override
 	public OrderModel updateOne(long idToUpdate, OrderModel updateOrder) {
-		// TODO Auto-generated method stub
+
+		for(int i =0; i <orders.size(); i++)
+		{
+			if(orders.get(i).getId() == idToUpdate)	
+			{
+				orders.set(i, updateOrder);
+				return orders.get(i);
+			}
+		}
 		return null;
 	}
 

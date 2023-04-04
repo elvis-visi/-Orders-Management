@@ -67,8 +67,8 @@ public class OrdersBusinessService implements OrdersBusinessServiceInterface {
 
 	@Override
 	public OrderModel updateOne(long idToUpdate, OrderModel updateOrder) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return ordersDAO.updateOne(idToUpdate, updateOrder);
 	}
 
 }
