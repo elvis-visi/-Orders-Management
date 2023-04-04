@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.elvis.data.OrdersDataAccessInterface;
 import com.elvis.models.OrderModel;
@@ -12,6 +13,7 @@ import com.elvis.models.OrderModel;
 public class OrdersBusinessService implements OrdersBusinessServiceInterface {
 
 	@Autowired
+	 @Qualifier("ordersDAO")
 	 OrdersDataAccessInterface<OrderModel> ordersDAO;
 	
 	

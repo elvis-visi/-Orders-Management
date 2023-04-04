@@ -8,6 +8,13 @@ public class OrderModel {
 	String productName = "";
 	float price = 0;
 	int quantity = 0;
+	
+	public OrderModel()
+	{
+		
+	}
+	
+	
 	public OrderModel(Long id, String orderNo, String productName, float price, int quantity) {
 		super();
 		this.id = id;
@@ -16,6 +23,7 @@ public class OrderModel {
 		this.price = price;
 		this.quantity = quantity;
 	}
+	
 	public Long getId() {
 		return id;
 	}
