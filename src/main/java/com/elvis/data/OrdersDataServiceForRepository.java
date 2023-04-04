@@ -66,8 +66,17 @@ public class OrdersDataServiceForRepository implements OrdersDataAccessInterface
 
 	@Override
 	public List<OrderModel> searchOrders(String searchTerm) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		 List<OrderEntity>	ordersEntity = 
+	ordersRepository.findByProductNameContainingIgnoreCase(searchTerm);
+		
+		 List<OrderModel> orders = new ArrayList<OrderModel>();
+			
+			for(OrderEntity item: ordersEntity) {
+				// add item to the list of ordermodel
+				orders.add(modelMapper.map(item, OrderModel.class));
+			}
+			return orders;
 	}
 
 	@Override
