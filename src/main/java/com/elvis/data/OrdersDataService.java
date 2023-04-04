@@ -99,7 +99,14 @@ public class OrdersDataService implements OrdersDataAccessInterface {
 
 	@Override
 	public boolean deleteOne(long id) {
-		// TODO Auto-generated method stub
+		//returns number of rows affected
+		int result = jdbcTemplate.update("DELETE FROM ORDERS WHERE ID= ?", id);
+		
+		if(result > 0)
+		{
+			return true;
+		}
+		
 		return false;
 	}
 
