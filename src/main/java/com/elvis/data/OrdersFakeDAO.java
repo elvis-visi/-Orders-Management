@@ -50,8 +50,15 @@ public class OrdersFakeDAO implements OrdersDataAccessInterface {
 
 	@Override
 	public long addOne(OrderModel newOrder) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		boolean success = orders.add(newOrder);
+		
+		if(success)
+		{
+			return 1;
+		}else {
+			return 0;
+		}
 	}
 
 	@Override

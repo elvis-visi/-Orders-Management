@@ -55,8 +55,8 @@ public class OrdersBusinessService implements OrdersBusinessServiceInterface {
 
 	@Override
 	public long addOne(OrderModel newOrder) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return ordersDAO.addOne(newOrder);
 	}
 
 	@Override
