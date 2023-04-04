@@ -53,8 +53,10 @@ public class OrdersDataService implements OrdersDataAccessInterface {
 
 	@Override
 	public List<OrderModel> searchOrders(String searchTerm) {
-		// TODO Auto-generated method stub
-		return null;
+		//"%" + searchTerm + "%" wildcard allows us to search for patial names
+		List<OrderModel> results = jdbcTemplate.query("SELECT * FROM ORDERS WHERE PRODUCT_NAME LIKE ?", new OrdersMapper(),"%" + searchTerm + "%");
+		
+		return results;
 	}
 
 	@Override
