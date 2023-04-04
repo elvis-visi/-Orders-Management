@@ -31,7 +31,15 @@ public class OrdersDataService implements OrdersDataAccessInterface {
 	
 	@Override
 	public OrderModel getById(long id) {
-		// TODO Auto-generated method stub
+		
+		
+	List<OrderModel> results = jdbcTemplate.query("SELECT * FROM ORDERS WHERE ID = ?",new OrdersMapper(), id);
+		
+		if(results.size() > 0)
+		{
+			return results.get(0);
+		}else
+			
 		return null;
 	}
 
@@ -64,7 +72,6 @@ public class OrdersDataService implements OrdersDataAccessInterface {
 				newOrder.getPrice(),
 				newOrder.getQuantity()
 				);
-		
 		
 		return result;   */
 		
