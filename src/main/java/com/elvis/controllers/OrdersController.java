@@ -94,9 +94,7 @@ public class OrdersController {
 		String search  = searchModel.getSearchTerm();
 		
 		//get list of orders
-		
 		List<OrderModel> orders = service.searchOrders(search);
-		
 		
 		//show all orders page
 		model.addAttribute("orders", orders);
@@ -107,14 +105,51 @@ public class OrdersController {
 	
 	
 	
+	@GetMapping("/admin")
+	public String showAdminPage(Model model)
+	{
+		
+		List<OrderModel> orders = service.getOrders();
+		
+		
+		model.addAttribute("title", "Here is what I want to do this summer");
+		model.addAttribute("orders", orders);
+		
+		return "ordersAdmin.html";
+	}
 	
 	
 	
+	@PostMapping("/doUpdate")
+	//process a request from the AddOrderForm. Add a new order to the database. Show all orders
+	public String updateOrder(@Valid OrderModel order, BindingResult bindingResult, Model model)
+	{
+		
+		//add the new order
+		service.updateOne(order.getId(), order);
+		
+		//get update list of all orders
+		List<OrderModel> orders = service.getOrders();
+		
+		//display all orders
+		model.addAttribute("orders",orders);
+		
+		return "ordersAdmin.html";
+		
+		
+	}
 	
 	
-	
-	
-	
+	@PostMapping("/editForm")
+	public String displayEditForm(OrderModel orderModel,Model model)
+	{
+		
+		//Display a new order form
+		model.addAttribute("title", "Edit order");
+		model.addAttribute("orderModel", orderModel);
+		
+		return "editForm.html";
+	}
 	
 	
 
