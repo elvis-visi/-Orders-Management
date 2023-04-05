@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
 import com.elvis.models.OrderModel;
+import com.elvis.models.SearchModel;
 import com.elvis.services.OrdersBusinessServiceInterface;
 
 @Controller
@@ -75,6 +76,42 @@ public class OrdersController {
 		
 		return "orders";
 	}
+	
+	
+	@GetMapping("/showSearchForm")
+	public String showSearchForm(Model model)
+	{
+		
+		model.addAttribute("searchModel", new SearchModel());
+		
+		return "searchForm.html";
+	}
+	
+	
+	@PostMapping("/search")
+	public String search(@Valid SearchModel searchModel, BindingResult bindingResult, Model model)
+	{
+		String search  = searchModel.getSearchTerm();
+		
+		//get list of orders
+		
+		List<OrderModel> orders = service.searchOrders(search);
+		
+		
+		//show all orders page
+		model.addAttribute("orders", orders);
+		
+		
+		return "orders";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
