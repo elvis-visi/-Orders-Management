@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.elvis</groupId>
-	<artifactId>topic4-2</artifactId>
+	<artifactId>topic4-3</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>topic4-2</name>
+	<name>topic4-3</name>
 	<description>Create some pages to demonstrate a controller and views</description>
 	<properties>
 		<java.version>11</java.version>
