@@ -151,6 +151,20 @@ public class OrdersController {
 		return "editForm.html";
 	}
 	
+	@PostMapping("/delete")
+	public String deelteOrder(OrderModel orderModel,Model model)
+	{
+		
+		service.deleteOne(orderModel.getId());
+		
+		//get updated list of all orders
+		List<OrderModel> orders = service.getOrders();
+		
+		//Display all orders
+		model.addAttribute("orders", orders);
+		
+		return "ordersAdmin.html";
+	}
 	
 
 }
