@@ -166,5 +166,18 @@ public class OrdersController {
 		return "ordersAdmin.html";
 	}
 	
+	
+	
+	@GetMapping("/spa")
+	public String showSPApage(Model model)
+	{
+		
+		return "ordersSPA.html";
+	}
+	
+	
+	
+	
+	
 
 }
