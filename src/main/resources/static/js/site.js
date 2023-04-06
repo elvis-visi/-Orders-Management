@@ -48,5 +48,34 @@ $(document).ready( function() {
 			});
 		});
 		
-	
-});
+			// click handler for the edit buttons.
+	$(document).on("click", ".edit-button", function() {
+		
+		// get the item number that was clicked
+		const editIdNumber =  $(this).val();
+		console.log(editIdNumber);
+		
+		 $.ajax(
+			{
+				url: "http://localhost:8080/api/v1/orders/"+editIdNumber, 
+				type: 'GET',
+	    		success: function(result)
+	    		{
+					console.log(result);
+					
+					// fill the data entry form with results from the database.
+					$("#orderid").val(result.id);
+					$("#ordernumber").val(result.orderNo);
+					$("#orderproductname").val(result.productName);
+					$("#orderprice").val(result.price);
+					$("#orderquantity").val(result.quantity);
+					
+					// make the form visible. animate 500ms.				
+					$("#entry-form").show(500);
+				}
+			});
+		});
+		
+	});	
+		
+
