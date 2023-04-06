@@ -22,9 +22,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		protected void configure(HttpSecurity http) throws Exception {
 		 http
 		 	.authorizeRequests()
+		 	//put most restricted pages first, only admin can delete/edit orders
+		 	.antMatchers("/orders/admin").hasRole("ADMIN")
+		 	.antMatchers("/orders/showNewOrderForm").hasAnyRole("ADMIN", "MANAGER")
 		 	
-		 	//Any request to the application must be authenticated using method below
-		 		.anyRequest().authenticated()
+		 	
+		 	
+		 	//allow non-logged in users to see login page 
+		 	.antMatchers("/login").permitAll()
 		 		.and()
 		 	.formLogin()	
 		 	//no default login form specified. Spring boot will generate the HTML and handlers automatically.
@@ -35,8 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		 		.and()
 		 	.httpBasic();	
 	}
-	//use in-memory authentication with the following three users:
-	//NoOpPasswordEncoder  Passwords stored in plain text.
+	
 	 @SuppressWarnings("deprecation")
 	 @Override
 	 public void configure(AuthenticationManagerBuilder auth) throws Exception {
