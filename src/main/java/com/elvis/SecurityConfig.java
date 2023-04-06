@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		 	
 		 	//Upon successful authentication, the user will be redirected to the /orders/all URL 
 		 	//display all orders after login
-		 		.defaultSuccessUrl("/orders/all")
+		 		.defaultSuccessUrl("/orders/")
 		 		.and()
 		 	.httpBasic();	
 	}

@@ -13,11 +13,27 @@
       <li class="nav-item">
         <a class="nav-link" href="/orders/showSearchForm">Search</a>
       </li>
-      <li class="nav-item">
+       <li class="nav-item">
+        <a class="nav-link" href="/orders/spa">S.P.A</a>
+      </li>
+      <li sec:authorize="hasAnyRole('ADMIN', 'MANAGER')" class="nav-item">
         <a class="nav-link" href="/orders/showNewOrderForm">Add</a>
       </li>
-      <li class="nav-item">
+      <li sec:authorize="hasRole('ADMIN')"  class="nav-item">
         <a class="nav-link" href="/orders/admin">Admin</a>
+      </li>
+       <li sec:authorize="!isAuthenticated()" class="nav-item">
+        <a class="nav-link" href="/login/">Login</a>
+      </li>
+       <li sec:authorize="isAuthenticated()" class="nav-item">
+		<!--Logout only works with a post request, so we need a form submit instead
+		of a href link like the others -->   
+        <form action="#" th:action="@{/logout}" method="post">
+			<input type="submit" value="Logout" />	
+		</form>
+      </li>
+       <li sec:authorize="isAuthenticated()">
+        <a class="nav-link" href="#">welcome <span th:text="${#authentication.name}"></span></a>
       </li>
     </ul>
   </div>
