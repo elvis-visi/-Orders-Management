@@ -1,6 +1,7 @@
 package com.elvis;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -26,7 +27,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		 	.antMatchers("/orders/admin").hasRole("ADMIN")
 		 	.antMatchers("/orders/showNewOrderForm").hasAnyRole("ADMIN", "MANAGER")
 		 	
+		 	//settings for the REST API used by the S.P.A.
+			.antMatchers(HttpMethod.POST,"/api/**").hasAnyRole("ADMIN", "MANAGER")
+			.antMatchers(HttpMethod.PUT,"/api/**").hasAnyRole("ADMIN", "MANAGER")
+			.antMatchers(HttpMethod.DELETE,"/api/**").hasAnyRole("ADMIN")
 		 	
+			//only authenticated users can access the api
+			.antMatchers("/api/**").authenticated()
 		 	
 		 	//allow non-logged in users to see login page 
 		 	.antMatchers("/login").permitAll()
@@ -38,7 +45,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		 	//display all orders after login
 		 		.defaultSuccessUrl("/orders/")
 		 		.and()
-		 	.httpBasic();	
+		 	.httpBasic()	
+		 // don't use CSRF in a REST api since it is used to secure <form> items, not JSON data.
+		 		.and()
+		 		.csrf().ignoringAntMatchers("/api/**");
 	}
 	
 	 @SuppressWarnings("deprecation")
