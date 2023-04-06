@@ -114,6 +114,26 @@ $(document).ready( function() {
 		// clear the search results since information is out of date.
 		$("#results-box").html("");
 	});
+	
+	
+		// delete button click listener.
+	$(document).on("click", ".delete-button", function() {
+		const deleteIdNumber =  $(this).val();
+		console.log(deleteIdNumber);
+		$.ajax({ 
+		    type: 'DELETE',
+		    url: "http://localhost:8080/api/v1/orders/" + deleteIdNumber, 
+		    success: function(data){
+		        console.log(data);
+		    },
+		    error: function(e){
+		        console.log(e);
+		    },
+		});
+		
+		// clear the search results box since information is now out of date.
+		$("#results-box").html("");
+	});
 		
 		
 	});	
