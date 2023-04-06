@@ -1,29 +1,27 @@
 package com.elvis.models;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Table("ORDERS")
+
+@Document(collection="orders")
 public class OrderEntity {
 	
 	//OrderEntity is based on OrderModel
 	//Its purpose is to connect the OrderModel to the Orders table in the database.
 	
 	@Id
-	@Column("ID")
-	Long id = 0L;
+	String id;
 	
-	@Column("ORDER_NUMBER")
+	@Indexed(unique=true)
 	String orderNo = "";
 	
-	@Column("PRODUCT_NAME")
+	@Indexed(unique=true)
 	String productName = "";
 	
-	@Column("PRICE")
 	float price = 0;
 	
-	@Column("QTY")
 	int quantity = 0;
 	
 	//we need a parameterless constructor for the mapping library we will use later.
@@ -33,7 +31,7 @@ public class OrderEntity {
 	}
 	
 	
-	public OrderEntity(Long id, String orderNo, String productName, float price, int quantity) {
+	public OrderEntity(String id, String orderNo, String productName, float price, int quantity) {
 		super();
 		this.id = id;
 		this.orderNo = orderNo;
@@ -41,10 +39,10 @@ public class OrderEntity {
 		this.price = price;
 		this.quantity = quantity;
 	}
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getOrderNo() {

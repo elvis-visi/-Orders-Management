@@ -28,14 +28,12 @@ public class SpringConfig {
 		return new OrdersBusinessService();
 	}
 	
-	//form the application.properties
-	@Autowired
-	DataSource dataSource;
+
 	
 	@Bean(name="ordersDAO") 
 	@RequestScope
 	public OrdersDataAccessInterface getDataService() {
-		return new OrdersDataServiceForRepository(dataSource);
+		return new OrdersDataServiceForRepository();
 		// return new OrdersDataService();
 	}
 	

@@ -9,16 +9,16 @@ public interface OrdersBusinessServiceInterface {
 	public void init();
 	public void destroy();
 	
-	public OrderModel getById(long id);
+	public OrderModel getById(String id);
 	
 	public List<OrderModel> getOrders();
 	
 	public List<OrderModel> searchOrders(String searchTerm);
 	
-	public long addOne(OrderModel newOrder);
+	public String addOne(OrderModel newOrder);
 	
-	public boolean deleteOne(long id);
+	public boolean deleteOne(String id);
 	
-	public OrderModel updateOne(long idToUpdate,OrderModel updateOrder);
+	public OrderModel updateOne(String idToUpdate,OrderModel updateOrder);
 
 }

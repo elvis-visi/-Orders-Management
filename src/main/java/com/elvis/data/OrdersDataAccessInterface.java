@@ -6,14 +6,14 @@ import com.elvis.models.OrderModel;
 
 public interface OrdersDataAccessInterface <T> {
 	
-	public T getById(long id);
+	public T getById(String id);
 	public List<T> getOrders();
 	public List<T> searchOrders(String searchTerm);
 	
-	public long addOne(T newOrder);
+	public String addOne(T newOrder);
 	
-	public boolean deleteOne(long id);
+	public boolean deleteOne(String id);
 	
-	public T updateOne(long idToUpdate,T updateOrder);
+	public T updateOne(String idToUpdate,T updateOrder);
 
 }

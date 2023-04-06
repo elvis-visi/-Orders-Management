@@ -3,10 +3,10 @@ package com.elvis.data;
 import java.util.List;
 import java.util.ArrayList;
 
-import javax.sql.DataSource;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
+
 
 import com.elvis.models.OrderModel;
 import com.elvis.models.OrderEntity;
@@ -19,17 +19,13 @@ public class OrdersDataServiceForRepository implements OrdersDataAccessInterface
 	@Autowired
 	OrdersRepositoryInterface ordersRepository;
 	
-	private JdbcTemplate jdbcTemplate;
+
 	
-	public OrdersDataServiceForRepository(DataSource dataSource)
-	{
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
-	}
 	
 	ModelMapper modelMapper =  new ModelMapper();
 	
 	@Override
-	public OrderModel getById(long id) {
+	public OrderModel getById(String id) {
 		
 		OrderEntity entity = ordersRepository.findById(id).orElse(null);
 		
@@ -68,7 +64,7 @@ public class OrdersDataServiceForRepository implements OrdersDataAccessInterface
 	public List<OrderModel> searchOrders(String searchTerm) {
 		
 		 List<OrderEntity>	ordersEntity = 
-	ordersRepository.findByProductNameContainingIgnoreCase(searchTerm);
+	ordersRepository.findByProductName(searchTerm);
 		
 		 List<OrderModel> orders = new ArrayList<OrderModel>();
 			
@@ -80,14 +76,14 @@ public class OrdersDataServiceForRepository implements OrdersDataAccessInterface
 	}
 
 	@Override
-	public long addOne(OrderModel newOrder) {
+	public String addOne(OrderModel newOrder) {
 		//we can save OrderEntity to the DB
 		OrderEntity entity = modelMapper.map(newOrder,OrderEntity.class);
 		OrderEntity result = ordersRepository.save(entity);
 		
 		if(result == null)
 		{
-			return 0;
+			return null;
 		}else {
 			return result.getId();
 		}
@@ -95,14 +91,14 @@ public class OrdersDataServiceForRepository implements OrdersDataAccessInterface
 	}
 
 	@Override
-	public boolean deleteOne(long id) {
+	public boolean deleteOne(String id) {
 		
 		ordersRepository.deleteById(id);
 		return true;
 	}
 
 	@Override
-	public OrderModel updateOne(long idToUpdate, OrderModel updateOrder) {
+	public OrderModel updateOne(String idToUpdate, OrderModel updateOrder) {
 		
 		OrderEntity entity = modelMapper.map(updateOrder,OrderEntity.class);
 		OrderEntity result = ordersRepository.save(entity);

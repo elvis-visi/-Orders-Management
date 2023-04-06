@@ -58,14 +58,14 @@ public class OrdersRestController {
 	
 	
 	@PostMapping("/")
-	public long addOrder(@RequestBody OrderModel model)
+	public String addOrder(@RequestBody OrderModel model)
 	{
 		return service.addOne(model);
 	}
 	
 	
 	@GetMapping("/{id}")
-	public OrderModel getByid(@PathVariable(name="id") long id)
+	public OrderModel getByid(@PathVariable(name="id") String id)
 	
 	{
 		return service.getById(id);
@@ -73,7 +73,7 @@ public class OrdersRestController {
 	
 	
 	@DeleteMapping("/{id}")
-	public boolean deleteOne(@PathVariable(name="id") long id)
+	public boolean deleteOne(@PathVariable(name="id") String id)
 	
 	{
 		return service.deleteOne(id);
@@ -81,7 +81,7 @@ public class OrdersRestController {
 	
 	
 	@PutMapping("/update/{id}")
-	public OrderModel update(@RequestBody OrderModel model, @PathVariable(name="id") long id)
+	public OrderModel update(@RequestBody OrderModel model, @PathVariable(name="id") String id)
 	{
 		return service.updateOne(id, model);
 	}

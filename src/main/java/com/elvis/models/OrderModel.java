@@ -3,7 +3,7 @@ package com.elvis.models;
 public class OrderModel {
 	
 	
-	Long id = 0L;
+	String id;
 	String orderNo = "";
 	String productName = "";
 	float price = 0;
@@ -15,7 +15,7 @@ public class OrderModel {
 	}
 	
 	
-	public OrderModel(Long id, String orderNo, String productName, float price, int quantity) {
+	public OrderModel(String id, String orderNo, String productName, float price, int quantity) {
 		super();
 		this.id = id;
 		this.orderNo = orderNo;
@@ -24,10 +24,10 @@ public class OrderModel {
 		this.quantity = quantity;
 	}
 	
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getOrderNo() {
