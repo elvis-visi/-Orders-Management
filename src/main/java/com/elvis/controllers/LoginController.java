@@ -41,7 +41,7 @@ public class LoginController {
 		model.addAttribute("loginModel", loginModel);
 		
 		
-		return "loginResults.html";
+		return "orders.html";
 	}
 }
 

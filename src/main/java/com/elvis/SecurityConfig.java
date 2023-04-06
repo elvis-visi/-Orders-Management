@@ -34,18 +34,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		 	
 			//only authenticated users can access the api
 			.antMatchers("/api/**").authenticated()
+			.antMatchers("/orders/**").authenticated()
 		 	
 		 	//allow non-logged in users to see login page 
-		 	.antMatchers("/login").permitAll()
+		 	.antMatchers("/login/").permitAll()
+		 		.and()
+		 		.httpBasic()
 		 		.and()
 		 	.formLogin()	
-		 	//no default login form specified. Spring boot will generate the HTML and handlers automatically.
+		 	//use the url that is served by the loginController
+		 	.loginPage("/login/")
+		 	
+		 	//match the text input fields on the login form
+		 	.usernameParameter("username")
+		 	.passwordParameter("password")
+		 	.permitAll()
 		 	
 		 	//Upon successful authentication, the user will be redirected to the /orders/all URL 
 		 	//display all orders after login
 		 		.defaultSuccessUrl("/orders/")
 		 		.and()
-		 	.httpBasic()	
+		 	.logout()	
+		 			.logoutUrl("/logout")
+		 			.invalidateHttpSession(true)
+		 			.clearAuthentication(true)
+		 			.permitAll()
+		 			.logoutSuccessUrl("/login/")
+		 	
+		 
 		 // don't use CSRF in a REST api since it is used to secure <form> items, not JSON data.
 		 		.and()
 		 		.csrf().ignoringAntMatchers("/api/**");

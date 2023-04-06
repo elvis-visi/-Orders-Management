@@ -9,7 +9,7 @@ which is used to store and handle the user input.  -->
   <!-- Anyting from this  div with layout fragment content will be put in the default layout-->
   <body>
 <div class="container my-5" layout:fragment="content">  <!--my  spacing/margin -->
-	 <form action="#" method="post" th:action="@{processLogin}" th:object="${loginModel}" >
+	 <form action="#" method="post" th:action="@{/login/}" th:object="${loginModel}" >
   <div class="mb-3">
     <label for="username" class="form-label">Username</label>
     <input th:field="*{username}" type="text" class="form-control" id="username" aria-describedby="usernamehelp">
