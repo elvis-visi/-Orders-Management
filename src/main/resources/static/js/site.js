@@ -76,6 +76,46 @@ $(document).ready( function() {
 			});
 		});
 		
+		
+		
+			// click handler for the entry form submit button.
+	$("#form-ok").click(function() {
+		
+		// generate a json object from the data entry form.
+		var obj = new Object();
+		obj.id = $("#orderid").val();
+		obj.orderNo = $("#ordernumber").val();
+		obj.productName = $("#orderproductname").val();
+		obj.price = $("#orderprice").val();
+		obj.quantity = $("#orderquantity").val();
+		
+		var jsonString = JSON.stringify(obj);
+		console.log("jsonstring", jsonString);
+		
+		$.ajax(
+			{ 
+				type: 'PUT',
+		    	url: "http://localhost:8080/api/v1/orders/update/"+obj.id, 
+				// configure the request to expect a json request body.
+			    contentType: 'application/json',
+			    data: jsonString,
+			    dataType: 'json',
+			    success: function(data){
+					// nothing to display. Console log for testing.
+			        console.log(data);
+			    },
+			    error: function(e){
+			        console.log(e);
+			    }, 
+		});
+		
+		$("#entry-form").hide(500);
+		
+		// clear the search results since information is out of date.
+		$("#results-box").html("");
+	});
+		
+		
 	});	
 		
 
