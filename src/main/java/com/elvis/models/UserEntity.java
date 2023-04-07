@@ -65,6 +65,13 @@ public class UserEntity {
 	public void setRoles(ArrayList<String> roles) {
 		this.roles = roles;
 	}
+
+
+	@Override
+	public String toString() {
+		return "UserEntity [id=" + id + ", username=" + username + ", password=" + password + ", roles=" + roles + "]";
+	}
+	
 	
 	
 	
