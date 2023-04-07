@@ -1,14 +1,18 @@
 package com.elvis;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.elvis.services.UsersBusinessService;
 
 
 
@@ -18,6 +22,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SuppressWarnings("deprecation")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+	
+	// responsible for loading user details during the authentication process.
+    @Autowired
+    UsersBusinessService service;
+
+    //used for encoding (hashing) passwords
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+	
 	//define the security rules for http requests
 	@Override
 		protected void configure(HttpSecurity http) throws Exception {
@@ -70,10 +86,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 @SuppressWarnings("deprecation")
 	 @Override
 	 public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		 auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance())
-		 			.withUser("customer1").password("123").roles("USER").and()
-		 			.withUser("theboss").password("123").roles("ADMIN","USER").and()
-		 			.withUser("manny").password("123").roles("MANAGER","USER");
+		
+		 //use this line to see what encrypted values are of the password "123"
+		 String password = new BCryptPasswordEncoder().encode("123");
+		 System.out.println("== Encrypted value of 123 === " + password);
+		 
+		 auth
+		 // UserDetailsService implementation to be used during the authentication process.
+		 	.userDetailsService(service)
+		 	//implementation to be used for encoding and validating passwords.
+		 	.passwordEncoder(passwordEncoder());
+		 	
 	 }
 	
 }
