@@ -1,37 +1,54 @@
 <!DOCTYPE html>
 <html layout:decorate="layouts/defaultLayout">
- 
-	  <!-- 
-		  1. Insert title
-		  2. Insert table for orders
-		  3. Add to defaultLayout
-		  
-		  -->
-		
-<div layout:fragment="content">		  
-	<h2 th:text="${title}"></h2>	  		  
-	<table class="table table-striped">
-	  <thead>
-	    <tr>
-	      <th scope="col">Id</th>
-	      <th scope="col">OrderNo</th>
-	      <th scope="col">Name</th>
-	      <th scope="col">Price</th>
-	       <th scope="col">Qty</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <tr th:each="order : ${orders}">
-	     
-	      <td th:text="${order.id}"></td>
-	      <td th:text="${order.orderNo}"></td>
-	      <td th:text="${order.productName}"></td>
-	      <td th:text="${order.price}"></td>
-	      <td th:text="${order.quantity}"></td>
-	    </tr>
-	   
-	  </tbody>
-	</table>
-	 </div> 
-  </body>
+  <!--
+      1. Insert title
+      2. Insert table for orders
+      3. Add to defaultLayout
+
+      -->
+  <div layout:fragment="content">
+    <h2 th:text="${title}"></h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">OrderNo</th>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Qty</th>
+          <th sec:authorize="hasRole('ROLE_ADMIN')" scope="col">Delete</th>
+          <th sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')" scope="col">Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="order : ${orders}">
+          <td th:text="${order.id}"></td>
+          <td th:text="${order.orderNo}"></td>
+          <td th:text="${order.productName}"></td>
+          <td th:text="${order.price}"></td>
+          <td th:text="${order.quantity}"></td>
+          <td sec:authorize="hasRole('ROLE_ADMIN')">
+            <form action="#" th:action="@{/orders/delete/}" th:object="${order}" method="post">
+              <input name="id" type="hidden" th:value="${order.id}">
+              <input name="orderNo" type="hidden" th:value="${order.orderNo}">
+              <input name="productName" type="hidden" th:value="${order.productName}">
+              <input name="price" type="hidden" th:value="${order.price}">
+              <input name="quantity" type="hidden" th:value="${order.quantity}">
+              <button class="btn btn-danger" type="submit" name="deleteItem" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+            </form>
+          </td>
+          <td sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')">
+            <form action="#" th:action="@{/orders/editForm/}" th:object="${order}" method="post">
+              <input name="id" type="hidden" th:value="${order.id}">
+              <input name="orderNo" type="hidden" th:value="${order.orderNo}">
+              <input name="productName" type="hidden" th:value="${order.productName}">
+              <input name="price" type="hidden" th:value="${order.price}">
+              <input name="quantity" type="hidden" th:value="${order.quantity}">
+              <button class="btn btn-secondary" type="submit" name="deleteItem">Edit</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </html>

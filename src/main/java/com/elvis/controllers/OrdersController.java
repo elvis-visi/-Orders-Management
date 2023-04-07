@@ -134,7 +134,7 @@ public class OrdersController {
 		//display all orders
 		model.addAttribute("orders",orders);
 		
-		return "ordersAdmin.html";
+		return "orders.html";
 		
 		
 	}

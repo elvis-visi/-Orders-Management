@@ -7,7 +7,7 @@
   
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li sec:authorize="!hasRole('ADMIN')" class="nav-item active">
+      <li  class="nav-item active">
         <a class="nav-link" href="/orders/">Orders <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
@@ -19,9 +19,7 @@
       <li sec:authorize="hasAnyRole('ADMIN', 'MANAGER')" class="nav-item">
         <a class="nav-link" href="/orders/showNewOrderForm">Add</a>
       </li>
-      <li sec:authorize="hasRole('ADMIN')"  class="nav-item">
-        <a class="nav-link" href="/orders/admin">Admin</a>
-      </li>
+   
        <li sec:authorize="!isAuthenticated()" class="nav-item">
         <a class="nav-link" href="/login/">Login</a>
       </li>
