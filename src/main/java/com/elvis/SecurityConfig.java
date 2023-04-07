@@ -22,6 +22,11 @@ import com.elvis.services.UsersBusinessService;
 @SuppressWarnings("deprecation")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Bean
+	public CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler() {
+	    return new CustomAuthenticationSuccessHandler();
+	}
+
 	
 	// responsible for loading user details during the authentication process.
     @Autowired
@@ -65,10 +70,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		 	.usernameParameter("username")
 		 	.passwordParameter("password")
 		 	.permitAll()
+		 	.successHandler(customAuthenticationSuccessHandler()) // Use the custom success handler
 		 	
 		 	//Upon successful authentication, the user will be redirected to the /orders/all URL 
 		 	//display all orders after login
-		 		.defaultSuccessUrl("/orders/")
+		 		
 		 		.and()
 		 	.logout()	
 		 			.logoutUrl("/logout")

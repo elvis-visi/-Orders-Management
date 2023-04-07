@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.elvis</groupId>
-	<artifactId>AuthDB</artifactId>
+	<artifactId>AuthDB3</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>AuthDB</name>
+	<name>AuthDB3</name>
 	<description>Create some pages to demonstrate a controller and views</description>
 	<properties>
 		<java.version>11</java.version>
