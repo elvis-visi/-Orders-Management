@@ -4,3 +4,17 @@
   width: 100%;
   text-align: center;
 }
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.float-right {
+   margin-left: auto;
+}
+
+
+form {
+  padding-top: 5px;
+}
