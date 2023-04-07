@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
@@ -39,8 +40,6 @@ public class OrdersController {
 		List<OrderModel> orders = service.getOrders();
 		
 		
-		
-		model.addAttribute("title", "Here is what I want to do this summer");
 		model.addAttribute("orders", orders);
 		
 		return "orders.html";
@@ -89,12 +88,13 @@ public class OrdersController {
 	
 	
 	@PostMapping("/search")
-	public String search(@Valid SearchModel searchModel, BindingResult bindingResult, Model model)
+	public String search(@RequestParam("theSearchName") String theSearchName,
+            Model model)
 	{
-		String search  = searchModel.getSearchTerm();
+	
 		
 		//get list of orders
-		List<OrderModel> orders = service.searchOrders(search);
+		List<OrderModel> orders = service.searchOrders(theSearchName);
 		
 		//show all orders page
 		model.addAttribute("orders", orders);
