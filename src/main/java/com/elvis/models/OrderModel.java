@@ -1,12 +1,29 @@
 package com.elvis.models;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+
+
+
 public class OrderModel {
 	
 	
 	String id;
+	
+	@NotBlank(message = "Order number cannot be blank")
 	String orderNo = "";
+	 
+	@NotBlank(message = "Product name cannot be blank")
 	String productName = "";
+	
+	@NotNull(message = "Price cannot be null")
+    @Min(value = 0, message = "Price must be a positive number")
 	float price = 0;
+	
+
+    @NotNull(message = "Quantity cannot be null")
+    @Min(value = 0, message = "Quantity must be a positive number or zero")
 	int quantity = 0;
 	
 	public OrderModel()

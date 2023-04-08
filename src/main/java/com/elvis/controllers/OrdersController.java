@@ -61,6 +61,11 @@ public class OrdersController {
 	public String addNew(@Valid OrderModel newOrder, BindingResult bindingResult, Model model )
 	{
 		
+		 if (bindingResult.hasErrors()) {
+		        // Show the form again with validation errors
+		        return "addNewOrderForm.html";
+		    }
+		
 		//id number should be null, as id is auto generated in the DB
 		newOrder.setId(null);
 		
