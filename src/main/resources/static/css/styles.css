@@ -27,3 +27,14 @@ form {
 	padding: 5px;
 	background-color:cornflowerblue;
 }
+
+.centered-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+
+

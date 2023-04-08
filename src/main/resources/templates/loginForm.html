@@ -1,31 +1,68 @@
 <!DOCTYPE html>
 <html layout:decorate="layouts/defaultLayout">
- 
 
-<!-- POST request to the processLogin endpoint when submitted. The form will be associated 
-with a server-side model object called loginModel, 
-which is used to store and handle the user input.  -->
-  
-  <!-- Anyting from this  div with layout fragment content will be put in the default layout-->
+  <!-- Anyting from this div with layout fragment content will be put in the default layout-->
   <body>
-<div class="container my-5" layout:fragment="content">  <!--my  spacing/margin -->
-	 <form action="#" method="post" th:action="@{/login/}" th:object="${loginModel}" >
-  <div class="mb-3">
-    <label for="username" class="form-label">Username</label>
-    <input th:field="*{username}" type="text" class="form-control" id="username" aria-describedby="usernamehelp">
-    <div id="usernamehelp" class="form-text">We'll never share your email with anyone else.</div>
-  	<p class="alert alert-danger" th:if="${#fields.hasErrors('username')}" 
-  	th:errors="*{username}">Username error</p>
-  </div>
-  <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    <input th:field="*{password}" type="text" class="form-control" id="password">
-  </div>
-  <p class="alert alert-danger" th:if="${#fields.hasErrors('password')}" 
-  	th:errors="*{password}">Password error</p>
-  	
-  <button type="submit" class="btn btn-primary">Login</button>
-</form>
- </div> 
+    <div class="container my-5 centered-column" layout:fragment="content">
+      
+      <div class="logInClass">
+      <form action="#" method="post" th:action="@{/login/}" th:object="${loginModel}">
+        <div class="row justify-content-center">
+         
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input th:field="*{username}" type="text" class="form-control input-large" id="username" aria-describedby="usernamehelp">
+              <div id="usernamehelp" class="form-text"></div>
+              <p class="alert alert-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</p>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input th:field="*{password}" type="text" class="form-control input-large" id="password">
+            </div>
+            <p class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</p>
+            <button type="submit" class="btn btn-primary">Login</button>
+        
+        </div>
+      </form>
+      
+      <div class="demo">
+       
+       <h2>3 authority roles with different access.</h2>
+        
+        
+        <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Username</th>
+      <th scope="col">Password</th>
+    
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>admin</td>
+      <td>admin</td>
+    
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>manager</td>
+      <td>manager</td>
+    </tr>
+     <tr>
+      <th scope="row">3</th>
+      <td>user</td>
+      <td>user</td>
+    </tr>
+   
+  </tbody>
+</table>
+      </div>
+      
+      </div>
+      
+    </div>
   </body>
 </html>
