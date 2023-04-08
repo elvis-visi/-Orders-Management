@@ -130,6 +130,11 @@ public class OrdersController {
 	public String updateOrder(@Valid OrderModel order, BindingResult bindingResult, Model model)
 	{
 		
+		 if (bindingResult.hasErrors()) {
+		        // Show the form again with validation errors
+		        return "editForm.html";
+		    }
+		
 		//add the new order
 		service.updateOne(order.getId(), order);
 		
