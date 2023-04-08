@@ -8,7 +8,7 @@
   <body>
    
    <div layout:fragment="content">	
-	   <form th:action="@{/orders/search}" action="#" method="post" >
+	   <form th:action="@{/orders/search}" action="#" method="post" th:object="${searchModel}">
 	 
 	  <div class="mb-3">
 	    <label for="searchTermInput" class="form-label">Search For</label>

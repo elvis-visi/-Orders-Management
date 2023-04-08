@@ -9,16 +9,15 @@
   <div layout:fragment="content">
 	  
 	  <div class="searchBox">   
-			<form th:action="@{/orders/search}" method="post">
- <input type="text" name="theSearchName" />
-  <input type="submit" value="Search" class="add-button"/>
+		<form th:action="@{/orders/search}" method="post">
+		 <input type="text" name="theSearchName" />
+		 <input type="submit" value="Search" class="add-button"/>
   (Search Blank to get all orders.)
-</form>
-
+		</form>
 	  </div>
 	
-	 
     <h2 th:text="${title}"></h2>
+  <div class="table-responsive-md">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -61,5 +60,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
+   
   </div>
 </html>
