@@ -11,13 +11,13 @@
          
             <div class="mb-3">
               <label for="username" class="form-label">Username</label>
-              <input th:field="*{username}" type="text" class="form-control input-large" id="username" aria-describedby="usernamehelp">
+              <input th:field="*{username}" type="text" class="form-control input-large" id="username" aria-describedby="usernamehelp" required>
               <div id="usernamehelp" class="form-text"></div>
               <p class="alert alert-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</p>
             </div>
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
-              <input th:field="*{password}" type="text" class="form-control input-large" id="password">
+              <input th:field="*{password}" type="text" class="form-control input-large" id="password" required>
             </div>
             <p class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</p>
             <button type="submit" class="btn btn-primary">Login</button>
@@ -26,14 +26,13 @@
       </form>
       
       <div class="demo">
+       <h3>For demonstration purposes</h3>
+     
        
-       <h2>3 authority roles with different access.</h2>
-        
-        
         <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
+     
       <th scope="col">Username</th>
       <th scope="col">Password</th>
     
@@ -41,18 +40,18 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
+    
       <td>admin</td>
       <td>admin</td>
     
     </tr>
     <tr>
-      <th scope="row">2</th>
+    
       <td>manager</td>
       <td>manager</td>
     </tr>
      <tr>
-      <th scope="row">3</th>
+   
       <td>user</td>
       <td>user</td>
     </tr>
