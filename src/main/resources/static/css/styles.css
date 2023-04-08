@@ -1,9 +1,15 @@
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+  margin-top: auto;
   text-align: center;
 }
+
 
 .flex-container {
   display: flex;
@@ -19,6 +25,8 @@ form {
   padding-top: 5px;
 }
 
+
+
 .searchBox{
 	display: flex;
 	justify-content:center;
@@ -26,6 +34,10 @@ form {
     margin-top: 1rem;
     padding: 0.5rem;
 	background-color:cornflowerblue;
+}
+
+.searchBox input[type="text"] {
+    margin-right: 10px;
 }
 
 .centered-column {
@@ -46,5 +58,6 @@ form {
     padding-top: 50px;
     padding-bottom: 50px;
 }
+
 
 

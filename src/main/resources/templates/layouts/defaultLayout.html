@@ -1,33 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>My First Webpage</title>
-    
-      <link href="/css/bootstrap.min.css" rel="stylesheet">
-      <link href="/css/styles.css" rel="stylesheet">
-  </head>
-  
-  <body>
-<!-- Insert the header -->
-
-<div sec:authorize="isAnonymous()" th:replace="layouts/loginHeader :: header-login">My login-specific header will go here.</div>
-<div sec:authorize="isAuthenticated()" th:replace="layouts/commonHeader :: header">My default header will go here.</div>
-
-    
-      
-<!--content -->      
-    <section layout:fragment="content">
-         <p>Replace this with a page that has layout:fragment="content"</p>
-    </section>
-    
-
-      
-<!--footer -->  
-    <div th:replace="layouts/commonFooter :: footer">My footer will go here.</div>  
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="page-container">
+        <!-- Insert the header -->
+        <div sec:authorize="isAnonymous()" th:replace="layouts/loginHeader :: header-login">My login-specific header will go here.</div>
+        <div sec:authorize="isAuthenticated()" th:replace="layouts/commonHeader :: header">My default header will go here.</div>
+        
+        <!-- content -->      
+        <section layout:fragment="content">
+            <p>Replace this with a page that has layout:fragment="content"</p>
+        </section>
+        
+        <!-- footer -->  
+        <div th:replace="layouts/commonFooter :: footer">My footer will go here.</div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-  </body>
-  
-  </html>
+</body>
+</html>
