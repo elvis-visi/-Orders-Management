@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
   <head>
     <meta charset="UTF-8">
     <title>My First Webpage</title>
@@ -10,7 +11,10 @@
   
   <body>
 <!-- Insert the header -->
-	 <div th:replace="layouts/commonHeader :: header">My header will go here.</div> 
+
+<div sec:authorize="isAnonymous()" th:replace="layouts/loginHeader :: header-login">My login-specific header will go here.</div>
+<div sec:authorize="isAuthenticated()" th:replace="layouts/commonHeader :: header">My default header will go here.</div>
+
 	  
 <!--content -->	  
  	<section layout:fragment="content">

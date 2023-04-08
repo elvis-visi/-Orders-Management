@@ -20,8 +20,7 @@ public class LoginController {
 	{
 		
 		model.addAttribute("loginModel", new LoginModel());
-		
-		
+	
 		return "loginForm.html";
 	}
 	
