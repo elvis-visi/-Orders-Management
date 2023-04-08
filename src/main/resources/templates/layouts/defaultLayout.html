@@ -15,11 +15,14 @@
 <div sec:authorize="isAnonymous()" th:replace="layouts/loginHeader :: header-login">My login-specific header will go here.</div>
 <div sec:authorize="isAuthenticated()" th:replace="layouts/commonHeader :: header">My default header will go here.</div>
 
+	
 	  
 <!--content -->	  
  	<section layout:fragment="content">
 		 <p>Replace this with a page that has layout:fragment="content"</p>
 	</section>
+	
+
 	  
 <!--footer -->  
 	<div th:replace="layouts/commonFooter :: footer">My footer will go here.</div>  
