@@ -16,7 +16,7 @@
           <a class="nav-link" href="/orders/showNewOrderForm">Add</a>
         </li>
         
-        <li class="nav-item">
+        <li  sec:authorize="hasRole('ADMIN')" class="nav-item">
           <a class="nav-link" href="/orders/spa">S.P.A</a>
         </li>
 

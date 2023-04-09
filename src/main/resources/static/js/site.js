@@ -6,6 +6,11 @@ $(document).ready( function() {
 	// hide the entry form by default.
 	$("#entry-form").hide();
 	
+	// Add a click event listener to the orderid input field
+    $("#orderid").click(function() {
+        alert("This field won't be updated.");
+    });
+	
 	
 		// click handler for the search button
 	$("#search-button").click(function(){
@@ -89,6 +94,19 @@ $(document).ready( function() {
 		obj.price = $("#orderprice").val();
 		obj.quantity = $("#orderquantity").val();
 		
+			
+			 // Check if any of the fields are empty
+	    if (!obj.id || !obj.orderNo || !obj.productName || !obj.price || !obj.quantity) {
+	        alert("All fields must be filled out.");
+	        return;
+	    }
+	
+	    // Check if price and quantity are numbers
+	    if (isNaN(obj.price) || isNaN(obj.quantity)) {
+	        alert("Price and Quantity must be numbers.");
+	        return;
+	    }
+		
 		var jsonString = JSON.stringify(obj);
 		console.log("jsonstring", jsonString);
 		
@@ -116,23 +134,27 @@ $(document).ready( function() {
 	});
 	
 	
-		// delete button click listener.
+	// delete button click listener.
 	$(document).on("click", ".delete-button", function() {
-		const deleteIdNumber =  $(this).val();
-		console.log(deleteIdNumber);
-		$.ajax({ 
-		    type: 'DELETE',
-		    url: "http://localhost:8080/api/v1/orders/" + deleteIdNumber, 
-		    success: function(data){
-		        console.log(data);
-		    },
-		    error: function(e){
-		        console.log(e);
-		    },
-		});
-		
-		// clear the search results box since information is now out of date.
-		$("#results-box").html("");
+	    const deleteIdNumber =  $(this).val();
+	    console.log(deleteIdNumber);
+	
+	    // Add a confirmation dialog before the actual delete request
+	    if (confirm("Are you sure you want to delete this item?")) {
+	        $.ajax({ 
+	            type: 'DELETE',
+	            url: "http://localhost:8080/api/v1/orders/" + deleteIdNumber, 
+	            success: function(data){
+	                console.log(data);
+	            },
+	            error: function(e){
+	                console.log(e);
+	            },
+	        });
+	        
+	        // clear the search results box since information is now out of date.
+	        $("#results-box").html("");
+	    }
 	});
 		
 		
