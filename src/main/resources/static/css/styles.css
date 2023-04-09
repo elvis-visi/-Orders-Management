@@ -6,13 +6,18 @@
 }
 
 
-
 .footer {
   margin-top: auto;
   text-align: center;
-background-color:#e3f2fd;
-padding: 10px;
+  background-color:#e3f2fd;
+  padding: 10px;
 }
+
+.footer a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
 
 .header-section-login{
 	background-color:#e3f2fd;
