@@ -101,3 +101,9 @@ border: 1px solid #ccc;
 }
 
 
+#results-box {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
