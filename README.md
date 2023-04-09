@@ -38,6 +38,16 @@
 # 8. Single Application Page 
 ![image](https://user-images.githubusercontent.com/92176935/230783252-bb7f8007-3665-404e-9b8a-a1a9679b67b0.png)
 
-# 9. Endpoints provided
+# 9. REST API mapping at “/api/v1/orders"
 
-![image](https://user-images.githubusercontent.com/92176935/223185766-d2f8bcb3-e958-4937-86a6-5a9947fffa66.png)
+![image](https://user-images.githubusercontent.com/92176935/230786845-b2de45a9-c309-4bb2-b124-056b53dfb42f.png)
+
+
+# 10. FrontEnd (Orders Controller) mapping at "/orders"
+
+![image](https://user-images.githubusercontent.com/92176935/230787037-8f3ebedb-733a-4c55-8882-e40d8be440a1.png)
+
+# 11. FrontEnd (Login Controller) mapping at "/login"
+
+![image](https://user-images.githubusercontent.com/92176935/230787092-62d31945-13d8-445b-80e1-c2878fc71516.png)
+
