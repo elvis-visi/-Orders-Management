@@ -15,14 +15,14 @@
 	<div class="mb-3">
 	  <label for="orderNumberInput" class="form-label">Order Number</label>
 	  <input th:field="*{orderNo}" type="text" class="form-control" id="orderNumberInput" aria-describedby="orderNumberHelp" required>
-	  <div id="orderNumberHelp" class="form-text">Number for this order.</div>
+	  <div id="orderNumberHelp" class="form-text"></div>
 	</div>
 	
 	<!-- Update the orderNameInput field -->
 	<div class="mb-3">
 	  <label for="orderNameInput" class="form-label">Order Name</label>
 	  <input th:field="*{productName}" type="text" class="form-control" id="orderNameInput" aria-describedby="orderNameHelp" required>
-	  <div id="orderNameHelp" class="form-text">Name for this order.</div>
+	  <div id="orderNameHelp" class="form-text"></div>
 	</div>
 
 	  
@@ -30,7 +30,7 @@
 	<div class="mb-3">
 	  <label for="orderPriceInput" class="form-label">Order Price</label>
 	  <input th:field="*{price}" type="number" step="0.01" class="form-control" id="orderPriceInput" aria-describedby="orderPriceHelp" th:errorclass="is-invalid">
-	  <div id="orderPriceHelp" class="form-text">Price for this order.</div>
+	  <div id="orderPriceHelp" class="form-text"></div>
 	  <div class="invalid-feedback" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
 	</div>
 	
@@ -38,7 +38,7 @@
 	<div class="mb-3">
 	  <label for="orderQuantityInput" class="form-label">Order Quantity</label>
 	  <input th:field="*{quantity}" type="number" class="form-control" id="orderQuantityInput" aria-describedby="orderQuantityHelp" th:errorclass="is-invalid">
-	  <div id="orderQuantityHelp" class="form-text">Quantity for this order.</div>
+	  <div id="orderQuantityHelp" class="form-text"></div>
 	  <div class="invalid-feedback" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></div>
 	</div>
 	

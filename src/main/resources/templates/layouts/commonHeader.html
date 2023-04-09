@@ -25,6 +25,11 @@
         </li>
       </ul>
       <ul class="navbar-nav float-right">
+		  
+		 <li sec:authorize="isAuthenticated()">
+          <a class="nav-link" href="#">Welcome <span th:text="${#authentication.name}"></span></a>
+        </li>
+        
         <li sec:authorize="isAuthenticated()" class="nav-item">
           <!-- Logout only works with a post request, so we need a form submit instead
 		  of a href link like the others -->   
@@ -32,9 +37,7 @@
             <input class="log" type="submit" value="Logout" />	
           </form>
         </li>
-        <li sec:authorize="isAuthenticated()">
-          <a class="nav-link" href="#">welcome <span th:text="${#authentication.name}"></span></a>
-        </li>
+       
       </ul>
     </div>
 
