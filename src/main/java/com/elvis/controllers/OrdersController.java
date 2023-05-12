@@ -173,7 +173,7 @@ public class OrdersController {
 		//Display all orders
 		model.addAttribute("orders", orders);
 		
-		return "ordersAdmin.html";
+		return "orders.html";
 	}
 	
 	
